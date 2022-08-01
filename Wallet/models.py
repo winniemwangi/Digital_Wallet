@@ -11,7 +11,7 @@ class Customer(models.Model):
     address = models.TextField(null=True)
     email = models.EmailField(null=True)
     password = models.CharField(max_length=16, null=True)
-    # Date_of_registration = models.DateTimeField() 
+    Date_of_registration = models.DateTimeField(null=True) 
     phonenumber = models.CharField(max_length=10, null=True)
     age = models.PositiveSmallIntegerField()
     gender = models.CharField(max_length=10, null=True)
