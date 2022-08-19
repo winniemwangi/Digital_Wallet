@@ -1,5 +1,4 @@
 from datetime import datetime
-import email
 from django.db import models
 
 
@@ -15,13 +14,13 @@ class Customer(models.Model):
     phonenumber = models.CharField(max_length=10, null=True)
     age = models.PositiveSmallIntegerField()
     gender = models.CharField(max_length=10, null=True)
-    ID_number = models.IntegerField(null=True)
+    id_number = models.IntegerField(null=True)
 
 
 class Wallet(models.Model):
     balance = models.IntegerField(null=True)
     customer = models.ForeignKey(default=1, to=Customer, on_delete=models.CASCADE, null=True, related_name='Wallet_customer')
-    Date_created = models.DateTimeField(null=True)
+    date_created = models.DateTimeField(null=True)
     status = models.CharField(max_length=10, null=True)
     pin = models.IntegerField(null=True)
     currency = models.CharField(max_length=10, null=True)
@@ -35,24 +34,24 @@ class Account(models.Model):
 
 class Transaction(models.Model):
     code = models.CharField(max_length=20, null=True)
-    Wallet = models.ForeignKey( on_delete=models.CASCADE, to=Wallet, null=True, related_name='wallet_transaction')
+    wallet = models.ForeignKey( on_delete=models.CASCADE, to=Wallet, null=True, related_name='wallet_transaction')
     amount = models.IntegerField(null=True)
     number = models.IntegerField(null=True)
     transaction_type = models.CharField(max_length=20, null=True)
     receipt = models.ForeignKey(to=Customer, on_delete=models.CASCADE, null=True, related_name='receipt_transaction')
     transaction_charge = models.IntegerField(null=True)
-    Date_time = models.DateTimeField(null=True)
+    date_time = models.DateTimeField(null=True)
     origin_Account = models.ForeignKey(on_delete=models.CASCADE, to=Account, null=True, related_name='origin_transaction')
     destination_account = models.ForeignKey( on_delete=models.CASCADE, to=Account, null=True, related_name='destination_transaction')
 
 class Card(models.Model):
     card_number = models.IntegerField(null=True)
     card_name = models.CharField(max_length=10, null=True)
-    Date_issued = models.DateTimeField(datetime.now, null=True)
+    date_issued = models.DateTimeField(datetime.now, null=True)
     card_type = models.CharField(max_length=10, null=True)
     expiry_date = models.DateTimeField(null=True)
     security_code = models.IntegerField(null=True)
-    Account = models.ForeignKey(to=Customer,on_delete=models.CASCADE, null=True, related_name='account_card')
+    account = models.ForeignKey(to=Customer,on_delete=models.CASCADE, null=True, related_name='account_card')
     issuer = models.CharField(max_length=20,null=True)
     signature = models.CharField(max_length=5, null=True)
 
