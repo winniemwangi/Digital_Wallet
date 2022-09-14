@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from Wallet.models import Account, Customer, Wallet
+
 # from Wallet.models import Customer
 from .forms import AccountRegistrationForm, CardRegistrationForm, CurrencyRegistrationForm, CustomerRegistrationForm, LoanRegistrationForm, NotificationsRegistrationForm, ReceiptRegistrationForm, RewardsRegistrationForm, ThirdpartyRegistrationForm, TransactionRegistrationForm, WalletRegistrationForm
 
@@ -7,16 +9,49 @@ from .forms import AccountRegistrationForm, CardRegistrationForm, CurrencyRegist
 # Handles http request
 
 def register_customer(request):
-    form = CustomerRegistrationForm()
+    if request.method == "POST":
+        form = CustomerRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = CustomerRegistrationForm()
     return render(request,"Wallet/register_customer.html",{"form":form})
 
-def register_wallet(request):
-    form = WalletRegistrationForm()
-    return render(request,"Wallet/wallet_customer.html",{"form":form})
+def list_customer(request):
+    customer = Customer.objects.all()
+    return render(request,"Wallet/customer_list.html",{"customer":customer})
 
 def register_account(request):
-    form = AccountRegistrationForm()
-    return render(request,"Wallet/account_customer.html",{"form":form})
+    if request.method=="POST":
+        form=AccountRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form=AccountRegistrationForm()
+        return render(request,"wallet/account.html",{"form":form})
+def list_account(request):
+    accounts=Account.objects.all()
+    return render(request,"wallet/account_list.html",{"accounts":accounts})
+
+
+def register_wallet(request):
+    if request.method == "POST":
+        form = WalletRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = WalletRegistrationForm()
+    return render(request,"wallet.html",{"form":form})
+
+def list_wallets(request):
+    wallet = Wallet.objects.all()
+    return render(request,"wallet/wallets_list.html",{"wallet":wallet})
+
+
+
+
 
 def register_transaction(request):
     form = TransactionRegistrationForm()
@@ -27,8 +62,16 @@ def register_card(request):
     return render(request,"Wallet/card_customer.html",{"form":form})
 
 def register_thirdparty(request):
-    form = ThirdpartyRegistrationForm()
+    if request.method == "POST":
+        form = ThirdpartyRegistrationForm(request.Post)
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = ThirdpartyRegistrationForm()
+
     return render(request,"Wallet/thirdparty_customer.html",{"form":form})
+    
 
 def register_notification(request):
     form = NotificationsRegistrationForm()
