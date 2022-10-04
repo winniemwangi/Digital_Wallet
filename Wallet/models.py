@@ -15,6 +15,7 @@ class Customer(models.Model):
     age = models.PositiveSmallIntegerField()
     gender = models.CharField(max_length=10, null=True)
     id_number = models.IntegerField(null=True)
+    profile_picture = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
 
 class Wallet(models.Model):

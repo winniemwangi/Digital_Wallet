@@ -1,0 +1,15 @@
+<table>
+    <th>
+        <td>Date</td>
+        <td>Transaction</td>
+        <td>File</td>
+    </th>
+    {%for receipts in receipt%}
+    <tr>
+        <td>{{receipts.date}}</td>
+        <td>{{receipts.transaction}}</td>
+        <td>{{receipts.file}}</td>
+    </tr>
+    {%endfor%}
+
+</table>

@@ -1,0 +1,23 @@
+<table>
+    <th>
+        <td>Card Type</td>
+        <td>Card Name</td>
+        <td>Card Number</td>
+
+
+
+
+    </th>
+    {%for cards in card%}
+    <tr>
+        <td>{{cards.card_type}}</td>
+        <td>{{cards.card_name}}</td>
+        <td>{{cards.card_number}}</td>
+
+
+
+
+    </tr>
+    {%endfor%}
+
+</table>

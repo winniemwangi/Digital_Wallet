@@ -1,0 +1,33 @@
+<style>
+    table th, td  {
+      border: 1px solid;
+      padding: 10px;
+    }
+    th{
+      color: white;
+      background-color: rgb(43, 221, 150);
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-left: 10%;
+    }
+</style>
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Profile</th>
+    </tr>
+    {%for customer in customers%}
+    <tr>
+        <td>{{customer.first_name}}</td>
+        <td>{{customer.age}}</td>
+        <td>{{customer.email}}</td>
+        <td><a  href="{%url 'customer_profile' id=customer.id%}"> View Profile</a>{{customer.profile}}</td>    
+    </tr>
+    {%endfor%}
+
+</table>
+

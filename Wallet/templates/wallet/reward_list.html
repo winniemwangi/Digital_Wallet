@@ -1,0 +1,15 @@
+<table>
+    <th>
+        <td>Recepient</td>
+        <td>wallet</td>
+        <td>points</td>
+    </th>
+    {%for rewards in reward%}
+    <tr>
+        <td>{{rewards.recepient}}</td>
+        <td>{{rewards.wallet}}</td>
+        <td>{{rewards.points}}</td>
+    </tr>
+    {%endfor%}
+
+</table>
