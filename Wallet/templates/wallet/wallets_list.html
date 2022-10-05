@@ -1,18 +1,35 @@
+<style>
+    table th, td  {
+      border: 1px solid;
+      padding: 10px;
+    }
+    th{
+      color: white;
+      background-color: rgb(43, 221, 150);
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-left: 10%;
+    }
+</style>
 <table>
-    <th>
-        <td>balance</td>
-        <td>customer</td>
-        <td>date_created</td>
-
-
-
-
-    </th>
-    {%for wallets in wallet%}
     <tr>
-        <td>{{wallets.balance}}</td>
-        <td>{{wallets.customer}}</td>
-        <td>{{wallets.date_created}}</td>
+        <th>balance</th>
+        <th>customer</th>
+        <th>date_created</th>
+        <th>Profile</th>
+
+
+
+
+    </tr>
+    {%for wallet in wallet%}
+    <tr>
+        <td>{{wallet.balance}}</td>
+        <td>{{wallet.customer}}</td>
+        <td>{{wallet.date_created}}</td>
+        <td><a  href="{%url 'wallet_profile' id=wallet.id%}"> View Profile</a></td>    
 
 
 

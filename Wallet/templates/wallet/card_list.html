@@ -1,21 +1,31 @@
+<style>
+    table th, td  {
+      border: 1px solid;
+      padding: 10px;
+    }
+    th{
+      color: white;
+      background-color: rgb(43, 221, 150);
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-left: 10%;
+    }
+</style>
 <table>
-    <th>
-        <td>Card Type</td>
-        <td>Card Name</td>
-        <td>Card Number</td>
-
-
-
-
-    </th>
-    {%for cards in card%}
     <tr>
-        <td>{{cards.card_type}}</td>
-        <td>{{cards.card_name}}</td>
-        <td>{{cards.card_number}}</td>
-
-
-
+        <th>Card Type</th>
+        <th>Card Name</th>
+        <th>Card Number</th>
+        <th>Profile</th>
+    </tr>
+    {%for card in card%}
+    <tr>
+        <td>{{card.card_type}}</td>
+        <td>{{card.card_name}}</td>
+        <td>{{card.card_number}}</td>
+        <td><a  href="{%url 'card_profile' id=card.id%}"> View Profile</a></td>    
 
     </tr>
     {%endfor%}

@@ -1,14 +1,32 @@
+<style>
+    table th, td  {
+      border: 1px solid;
+      padding: 10px;
+    }
+    th{
+      color: white;
+      background-color: rgb(43, 221, 150);
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-left: 10%;
+    }
+</style>
 <table>
-    <th>
-        <td>Date</td>
-        <td>Transaction</td>
-        <td>File</td>
-    </th>
-    {%for receipts in receipt%}
     <tr>
-        <td>{{receipts.date}}</td>
-        <td>{{receipts.transaction}}</td>
-        <td>{{receipts.file}}</td>
+        <th>Date</th>
+        <th>Transaction</th>
+        <th>File</th>
+        <th>Profile</th>
+    </tr>
+    {%for receipt in receipt%}
+    <tr>
+        <td>{{receipt.date}}</td>
+        <td>{{receipt.transaction}}</td>
+        <td>{{receipt.file}}</td>
+        <td><a  href="{%url 'receipt_profile' id=receipt.id%}"> View Profile</a></td>    
+
     </tr>
     {%endfor%}
 

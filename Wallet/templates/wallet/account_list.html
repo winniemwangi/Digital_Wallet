@@ -1,15 +1,33 @@
+<style>
+   table th, td  {
+     border: 1px solid;
+     padding: 10px;
+   }
+   th{
+     color: white;
+     background-color: rgb(43, 221, 150);
+   }
+   table {
+     width: 80%;
+     border-collapse: collapse;
+     margin-left: 10%;
+   }
+</style>
 <table>
-    <th>
-       <td>account_name</td>
-       <td>account_number</td>
-       <td>account_type</td>
-       <td>balance</td>
-    </th>
+    <tr>
+       <th>account_name</th>
+       <th>account_number</th>
+       <th>account_type</th>
+       <th>balance</th>
+       <th>Profile</th>
+    </tr>
    {% for account in accounts%}
    <tr>
-       <td> {{account.account_name}} </td>
-       <td> {{account.account_number}} </td>
-       <td> {{account.account_type}} </td>
-       <td> {{account.balance}} </td>
+      <td> {{account.account_name}} </td>
+      <td> {{account.account_number}} </td>
+      <td> {{account.account_type}} </td>
+      <td> {{account.balance}} </td>
+      <td><a  href="{%url 'account_profile' id=account.id%}"> View Profile</a></td>    
+
     </tr>
    {%endfor%}
