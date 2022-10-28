@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('wallet/', include("Wallet.urls")),
     path('api/', include('api.urls')),
+    path("deposit/", AccountDepositView.as_view(), name="deposit-view"),
 ]

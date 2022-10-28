@@ -12,6 +12,8 @@ router.register(r'loans', LoanViewSet)
 router.register(r'receipts', ReceiptViewSet)
 router.register(r'notifications', NotificationViewSet)
 
+
 urlpatterns=[
     path('', include(router.urls)),
+    
 ]

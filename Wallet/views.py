@@ -38,7 +38,16 @@ def list_account(request):
     accounts=Account.objects.all()
     return render(request,"wallet/account_list.html",{"accounts":accounts})
 
-
+def deposit(self, amount):
+       if amount <= 0:
+           message =  "Invalid amount"
+           status = 403
+       else:
+           self.account_balance += amount
+           self.save()
+           message = f"You have deposited {amount}, your new balance is {self.account_balance}"
+           status = 200
+       return message, status
 
 
 def register_wallet(request):

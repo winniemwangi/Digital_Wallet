@@ -1,5 +1,8 @@
 from typing import ValuesView
 from django.shortcuts import render
+from rest_framework import views
+from rest_framework.response import Response
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets
 from Wallet.models import Account, Card, Customer, Loan, Notifications, Receipt, Transaction, Wallet
 from .serializer import AccountSerializer, CardSerializer, CustomerSerializer, LoanSerializer, NotificationSerializer, ReceiptSerializer, TransactionSerializer, WalletSerializer
@@ -37,3 +40,25 @@ class ReceiptViewSet(viewsets.ModelViewSet):
 class NotificationViewSet(viewsets.ModelViewSet):
     queryset = Notifications.objects.all()
     serializer_class = NotificationSerializer
+
+
+class AccountDepositView(views.APIView):
+   """
+   This class allows deposit of funds to an account.
+   Accepts this JSON data
+   {
+       "account_id": 123,
+       "amount": 1000
+   }
+   This API needs Authentication and Permissions to be added
+   """
+   def post(self, request, format=None):       
+       account_id = request.data["account_id"]
+       amount = request.data["amount"]
+       try:
+           account = Account.objects.get(id=account_id)
+       except ObjectDoesNotExist:
+           return Response("Account Not Found", status=404)
+      
+       message, status = account.deposit(amount)
+       return Response(message, status=status)
